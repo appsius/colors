@@ -37,7 +37,7 @@ export default class Palette extends Component {
         />
         <div className='Palette-colors'>{colorBoxes}</div>
         {/* footer ll be here */}
-        <h1></h1>
+        {/* <h1></h1> */}
       </div>
     );
   }
