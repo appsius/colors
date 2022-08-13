@@ -243,4 +243,4 @@ const seedColors = [
   },
 ];
 
-export default seedColors;
+export { seedColors };
