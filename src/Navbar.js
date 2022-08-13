@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Slider from 'rc-slider';
+import { Link } from 'react-router-dom';
 import 'rc-slider/assets/index.css';
 import './Navbar.css';
 import MenuItem from '@mui/material/MenuItem';
@@ -35,7 +36,7 @@ export default class Navbar extends Component {
     return (
       <header className='Navbar'>
         <div className='logo'>
-          <a href='https://appsius-colors.netlify.app'>reactcolorpicker</a>
+          <Link to='/'>reactcolorpicker</Link>
         </div>
         <div className='slider-container'>
           <span>Level: {level}</span>
