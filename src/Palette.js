@@ -30,6 +30,7 @@ export default function Palette(props) {
       name={color.name}
       key={color.id}
       moreUrl={`/palette/${paletteId}/${color.id}`}
+      showLink
     />
   ));
 
