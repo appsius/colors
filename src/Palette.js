@@ -20,7 +20,7 @@ export default function Palette() {
       name={color.name}
       key={color.id}
       moreUrl={`/palette/${paletteId}/${color.id}`}
-      showLink
+      showingFullPalette
     />
   ));
 
@@ -42,7 +42,7 @@ export default function Palette() {
         level={level}
         changeLevel={changeLevel}
         handleChange={changeFormat}
-        showingAllColors
+        showingFullPalette={true}
       />
       <div className='Palette-colors'>{colorBoxes}</div>
       <PaletteFooter paletteName={paletteName} emoji={emoji} />
