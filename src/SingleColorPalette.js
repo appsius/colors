@@ -46,7 +46,7 @@ export default function SingleColorPalette() {
 
   return (
     <div className='Single-color-palette Palette'>
-      <Navbar handleChange={changeFormat} showingAllColors={false} />
+      <Navbar handleChange={changeFormat} showingFullPalette={false} />
       <div className='Palette-colors'>
         {colorBoxes}
         <div className='go-back ColorBox'>
