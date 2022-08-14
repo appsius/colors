@@ -5,13 +5,11 @@ import Palette from './Palette';
 import PaletteList from './PaletteList';
 import { seedColors } from './seedColors';
 
-export default class App extends Component {
-  render() {
-    return (
-      <Routes>
-        <Route exact path='/' element={<PaletteList palettes={seedColors} />} />
-        <Route exact path='/palette/:paletteId' element={<Palette />} />
-      </Routes>
-    );
-  }
+export default function App() {
+  return (
+    <Routes>
+      <Route exact path='/' element={<PaletteList palettes={seedColors} />} />
+      <Route exact path='/palette/:paletteId' element={<Palette />} />
+    </Routes>
+  );
 }
