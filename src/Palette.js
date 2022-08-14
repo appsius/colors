@@ -5,25 +5,15 @@ import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 import { seedColors } from './seedColors';
 import { generatePalette } from './ColorHelpers';
+import PaletteFooter from './PaletteFooter';
 
 export default function Palette(props) {
   const { paletteId } = useParams();
   const [level, setLevel] = useState(500);
   const [format, setFormat] = useState('hex');
-
-  const findPalette = (id) => {
-    return seedColors.find(function (palette) {
-      return palette.id === id;
-    });
-  };
-  const changeLevel = (level) => {
-    setLevel(level);
-  };
-  const changeFormat = (val) => {
-    setFormat(val);
-  };
-
   const palette = generatePalette(findPalette(paletteId));
+  const { paletteName, emoji } = palette;
+
   const colorBoxes = palette.colors[level].map((color) => (
     <ColorBox
       background={color[format]}
@@ -34,18 +24,28 @@ export default function Palette(props) {
     />
   ));
 
+  function findPalette(id) {
+    return seedColors.find(function (palette) {
+      return palette.id === id;
+    });
+  }
+  function changeLevel(level) {
+    setLevel(level);
+  }
+  function changeFormat(val) {
+    setFormat(val);
+  }
+
   return (
     <div className='Palette'>
       <Navbar
         level={level}
         changeLevel={changeLevel}
         handleChange={changeFormat}
+        showingAllColors
       />
       <div className='Palette-colors'>{colorBoxes}</div>
-      <footer className='Palette-footer'>
-        {palette.paletteName}
-        <span className='emoji'>{palette.emoji}</span>
-      </footer>
+      <PaletteFooter paletteName={paletteName} emoji={emoji} />
     </div>
   );
 }
