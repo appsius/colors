@@ -6,7 +6,7 @@ import MiniPalette from './MiniPalette';
 const styles = {
   root: {
     backgroundColor: 'blue',
-    height: '100%',
+    height: '100vh',
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'center',
@@ -43,7 +43,7 @@ function PaletteList(props) {
         </nav>
         <div className={classes.palettes}>
           {palettes.map((palette) => (
-            <MiniPalette {...palette} />
+            <MiniPalette {...palette} key={palette.id} />
             // <p>
             //   <Link to={`/palette/${palette.id}`}>{palette.paletteName}</Link>
             // </p>
