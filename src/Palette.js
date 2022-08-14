@@ -7,7 +7,7 @@ import { seedColors } from './seedColors';
 import { generatePalette } from './ColorHelpers';
 import PaletteFooter from './PaletteFooter';
 
-export default function Palette(props) {
+export default function Palette() {
   const { paletteId } = useParams();
   const [level, setLevel] = useState(500);
   const [format, setFormat] = useState('hex');
