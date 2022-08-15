@@ -18,6 +18,7 @@ function PaletteList(props) {
       <div className={classes.container}>
         <nav className={classes.nav}>
           <h1>React Colors</h1>
+          <Link to={'/palette/new'}>Create Palette</Link>
         </nav>
         <div className={classes.palettes}>
           {palettes.map((palette) => (
@@ -26,9 +27,6 @@ function PaletteList(props) {
               key={palette.id}
               handleClick={() => goToPalette(palette.id)}
             />
-            // <p>
-            //   <Link to={`/palette/${palette.id}`}>{palette.paletteName}</Link>
-            // </p>
           ))}
         </div>
       </div>
