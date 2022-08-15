@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import Slider from 'rc-slider';
 import { Link } from 'react-router-dom';
-import 'rc-slider/assets/index.css';
-import './Navbar.css';
+import withStyles from '@mui/styles/withStyles';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 
-export default class Navbar extends Component {
+import 'rc-slider/assets/index.css';
+import { styles } from './styles/NavbarStyles';
+
+class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,18 +32,18 @@ export default class Navbar extends Component {
   }
 
   render() {
-    const { level, changeLevel, showingFullPalette } = this.props;
+    const { level, changeLevel, showingFullPalette, classes } = this.props;
     const { format } = this.state;
 
     return (
-      <header className='Navbar'>
-        <div className='logo'>
+      <header className={classes.Navbar}>
+        <div className={classes.logo}>
           <Link to='/'>reactcolorpicker</Link>
         </div>
         {showingFullPalette && (
-          <div className='slider-container'>
+          <div>
             <span>Level: {level}</span>
-            <div className='slider'>
+            <div className={classes.slider}>
               <Slider
                 defaultValue={level}
                 min={100}
@@ -52,7 +54,7 @@ export default class Navbar extends Component {
             </div>
           </div>
         )}
-        <div className='Select-container'>
+        <div className={classes.selectContainer}>
           <Select value={format} onChange={this.handleFormatChange}>
             <MenuItem value='hex'>HEX - #ffffff</MenuItem>
             <MenuItem value='rgb'>RGB - rgb(255, 255, 255)</MenuItem>
@@ -85,3 +87,5 @@ export default class Navbar extends Component {
     );
   }
 }
+
+export default withStyles(styles)(Navbar);
