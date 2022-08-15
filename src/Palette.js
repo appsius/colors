@@ -6,8 +6,21 @@ import Navbar from './Navbar';
 import { seedColors } from './seedColors';
 import { generatePalette } from './ColorHelpers';
 import PaletteFooter from './PaletteFooter';
+import { withStyles } from '@mui/styles';
 
-export default function Palette() {
+const styles = {
+  Palette: {
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  colors: {
+    height: '90%',
+  },
+};
+
+function Palette(props) {
+  const { classes } = props;
   const { paletteId } = useParams();
   const [level, setLevel] = useState(500);
   const [format, setFormat] = useState('hex');
@@ -37,15 +50,17 @@ export default function Palette() {
   }
 
   return (
-    <div className='Palette'>
+    <div className={classes.Palette}>
       <Navbar
         level={level}
         changeLevel={changeLevel}
         handleChange={changeFormat}
         showingFullPalette={true}
       />
-      <div className='Palette-colors'>{colorBoxes}</div>
+      <div className={classes.colors}>{colorBoxes}</div>
       <PaletteFooter paletteName={paletteName} emoji={emoji} />
     </div>
   );
 }
+
+export default withStyles(styles)(Palette);

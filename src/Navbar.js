@@ -33,8 +33,6 @@ export default class Navbar extends Component {
     const { level, changeLevel, showingFullPalette } = this.props;
     const { format } = this.state;
 
-    console.log(this.props);
-
     return (
       <header className='Navbar'>
         <div className='logo'>
