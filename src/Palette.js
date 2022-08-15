@@ -7,17 +7,7 @@ import { seedColors } from './seedColors';
 import { generatePalette } from './ColorHelpers';
 import PaletteFooter from './PaletteFooter';
 import { withStyles } from '@mui/styles';
-
-const styles = {
-  Palette: {
-    height: '100vh',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  colors: {
-    height: '90%',
-  },
-};
+import { styles } from './styles/PaletteStyles';
 
 function Palette(props) {
   const { classes } = props;
