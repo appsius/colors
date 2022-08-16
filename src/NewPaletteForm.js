@@ -1,5 +1,5 @@
-import React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
+import React, { useState } from 'react';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -58,13 +58,11 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 export default function NewPaletteForm() {
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
   };
-
   const handleDrawerClose = () => {
     setOpen(false);
   };
