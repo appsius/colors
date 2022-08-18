@@ -13,6 +13,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { ChromePicker } from 'react-color';
 import { Button } from '@mui/material';
 import { color } from '@mui/system';
+import DraggableColorBox from './DraggableColorBox';
 
 const drawerWidth = 400;
 
@@ -58,6 +59,10 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
   justifyContent: 'flex-end',
+}));
+
+const ColorBoxes = styled('ul')(() => ({
+  height: 'calc(100vh - 64px)',
 }));
 
 export default function NewPaletteForm() {
@@ -145,11 +150,11 @@ export default function NewPaletteForm() {
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
-        <ul>
+        <ColorBoxes>
           {colors.map((color) => (
-            <li style={{ backgroundColor: color }}>{color}</li>
+            <DraggableColorBox color={color} />
           ))}
-        </ul>
+        </ColorBoxes>
       </Main>
     </Box>
   );
