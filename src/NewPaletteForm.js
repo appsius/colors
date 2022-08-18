@@ -12,6 +12,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { ChromePicker } from 'react-color';
 import { Button } from '@mui/material';
+import { color } from '@mui/system';
 
 const drawerWidth = 400;
 
@@ -60,13 +61,26 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 export default function NewPaletteForm() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
+  const [currentColor, setCurrentColor] = useState('teal');
+  const [colors, setColors] = useState([
+    '#2DE5E5',
+    '#CC1941',
+    '#23F264',
+    '#032626',
+  ]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
   };
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+  const updateCurrentColor = (newColor) => {
+    setCurrentColor(newColor.hex);
+  };
+  const addNewColor = () => {
+    setColors([...colors, currentColor]);
   };
 
   return (
@@ -117,15 +131,25 @@ export default function NewPaletteForm() {
           </Button>
         </div>
         <ChromePicker
-          color={'purple'}
-          onChangeComplete={(newColor) => console.log(newColor)}
+          color={currentColor}
+          onChangeComplete={updateCurrentColor}
         />
-        <Button variant='contained' color='primary'>
+        <Button
+          variant='contained'
+          color='primary'
+          style={{ backgroundColor: currentColor }}
+          onClick={addNewColor}
+        >
           Add Color
         </Button>
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
+        <ul>
+          {colors.map((color) => (
+            <li style={{ backgroundColor: color }}>{color}</li>
+          ))}
+        </ul>
       </Main>
     </Box>
   );
