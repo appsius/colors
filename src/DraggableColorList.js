@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import DraggableColorBox from './DraggableColorBox';
 
 const ColorBoxes = styled('ul')(() => ({
-  height: 'calc(100vh - 64px)',
+  height: 'calc(100vh - 100px)',
 }));
 
 const DraggableColorList = SortableContainer(({ colors, removeColor }) => {
