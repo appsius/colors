@@ -6,7 +6,7 @@ import MiniPalette from './MiniPalette';
 import { styles } from './styles/PaletteListStyles';
 
 function PaletteList(props) {
-  const { palettes, classes } = props;
+const { palettes, classes } = props;
   const navigate = useNavigate();
 
   const goToPalette = (id) => {

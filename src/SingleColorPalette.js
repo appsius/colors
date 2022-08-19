@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-import { seedColors } from './seedColors';
 import { generatePalette } from './ColorHelpers';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
@@ -10,7 +9,7 @@ import { withStyles } from '@mui/styles';
 import { styles } from './styles/PaletteStyles';
 
 function SingleColorPalette(props) {
-  const { classes } = props;
+  const { palettes, classes } = props;
   const [format, setFormat] = useState('hex');
   const { paletteId, colorId } = useParams();
   const palette = generatePalette(findPalette(paletteId));
@@ -26,7 +25,7 @@ function SingleColorPalette(props) {
   ));
 
   function findPalette(id) {
-    return seedColors.find(function (palette) {
+    return palettes.find(function (palette) {
       return palette.id === id;
     });
   }
