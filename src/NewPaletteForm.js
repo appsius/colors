@@ -16,6 +16,8 @@ import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
 import { useNavigate } from 'react-router';
 import DraggableColorList from './DraggableColorList';
 import { arrayMoveImmutable } from 'array-move';
+import { Link } from 'react-router-dom';
+import PaletteFormNav from './PaletteFormNav';
 
 const drawerWidth = 400;
 
@@ -63,11 +65,10 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-export default function NewPaletteForm({ palettes, savePalette }) {
+export default function NewPaletteForm({ palettes, savePalette, classes }) {
   const [open, setOpen] = useState(true);
   const [currentColor, setCurrentColor] = useState('teal');
   const [newColorName, setNewName] = useState('');
-  const [newPaletteName, setNewPaletteName] = useState('');
   const [colors, setColors] = useState(palettes[0].colors);
   const maxColors = 20;
   const paletteIsFull = colors.length >= maxColors;
@@ -78,12 +79,6 @@ export default function NewPaletteForm({ palettes, savePalette }) {
   );
   ValidatorForm.addValidationRule('isColorUnique', () =>
     colors.every(({ color }) => color !== currentColor)
-  );
-  ValidatorForm.addValidationRule('isPaletteNameUnique', (value) =>
-    palettes.every(
-      ({ paletteName }) =>
-        paletteName.toLocaleLowerCase() !== value.toLocaleLowerCase()
-    )
   );
 
   const handleDrawerOpen = () => {
@@ -109,16 +104,13 @@ export default function NewPaletteForm({ palettes, savePalette }) {
     const { name, value } = evt.target;
     if (name === 'newColorName') {
       setNewName(value);
-    } else if (name === 'newPaletteName') {
-      setNewPaletteName(value);
     }
   };
 
-  const handleSubmit = () => {
-    let newName = newPaletteName;
+  const handleSubmit = (newPaletteName) => {
     const newPalette = {
-      id: newName.toLocaleLowerCase().replace(/ /g, '-'),
-      paletteName: newName,
+      id: newPaletteName.toLocaleLowerCase().replace(/ /g, '-'),
+      paletteName: newPaletteName,
       colors: colors,
     };
     savePalette(newPalette);
@@ -166,39 +158,14 @@ export default function NewPaletteForm({ palettes, savePalette }) {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <AppBar position='fixed' open={open} color='default'>
-        <Toolbar>
-          <IconButton
-            color='inherit'
-            aria-label='open drawer'
-            onClick={handleDrawerOpen}
-            edge='start'
-            sx={{ mr: 2, ...(open && { display: 'none' }) }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant='h6' noWrap component='div'>
-            Persistent drawer
-          </Typography>
-          <ValidatorForm onSubmit={handleSubmit}>
-            <TextValidator
-              label='Palette Name'
-              name='newPaletteName'
-              value={newPaletteName}
-              onChange={handleChange}
-              validators={['required', 'isPaletteNameUnique']}
-              errorMessages={[
-                'Palette name is required',
-                'Palette name must unique',
-              ]}
-            />
-            <Button variant='contained' color='primary' type='submit'>
-              Save Palette
-            </Button>
-          </ValidatorForm>
-        </Toolbar>
-      </AppBar>
+      <PaletteFormNav
+        open={open}
+        classes={classes}
+        palettes={palettes}
+        AppBar={AppBar}
+        handleSubmit={handleSubmit}
+        handleDrawerOpen={handleDrawerOpen}
+      />
       <Drawer
         sx={{
           width: drawerWidth,
