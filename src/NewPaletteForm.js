@@ -11,10 +11,11 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { ChromePicker } from 'react-color';
-import { Button, colors } from '@mui/material';
-import DraggableColorBox from './DraggableColorBox';
+import { Button } from '@mui/material';
 import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
 import { useNavigate } from 'react-router';
+import DraggableColorList from './DraggableColorList';
+import { arrayMoveImmutable } from 'array-move';
 
 const drawerWidth = 400;
 
@@ -60,10 +61,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
   justifyContent: 'flex-end',
-}));
-
-const ColorBoxes = styled('ul')(() => ({
-  height: 'calc(100vh - 64px)',
 }));
 
 export default function NewPaletteForm(props) {
@@ -130,6 +127,28 @@ export default function NewPaletteForm(props) {
   const removeColor = (colorName) => {
     const filteredColors = colors.filter(({ name }) => name !== colorName);
     setColors(filteredColors);
+  };
+
+  const onSortEnd = ({ oldIndex: oldI, newIndex: newI }) => {
+    const movingColor = colors[oldI];
+    const backwards = oldI > newI;
+    let newOrder;
+    if (backwards) {
+      newOrder = [
+        ...colors.slice(0, newI),
+        movingColor,
+        ...colors.slice(newI, oldI),
+        ...colors.slice(oldI + 1),
+      ];
+    } else {
+      newOrder = [
+        ...colors.slice(0, oldI),
+        ...colors.slice(oldI + 1, newI + 1),
+        movingColor,
+        ...colors.slice(newI + 1),
+      ];
+    }
+    setColors(newOrder);
   };
 
   return (
@@ -223,19 +242,12 @@ export default function NewPaletteForm(props) {
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
-        <ColorBoxes>
-          {colors.map((c) => {
-            const { color, name } = c;
-            return (
-              <DraggableColorBox
-                key={name}
-                color={color}
-                name={name}
-                handleClick={() => removeColor(name)}
-              />
-            );
-          })}
-        </ColorBoxes>
+        <DraggableColorList
+          colors={colors}
+          removeColor={removeColor}
+          axis='xy'
+          onSortEnd={onSortEnd}
+        />
       </Main>
     </Box>
   );
