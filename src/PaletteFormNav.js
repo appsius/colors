@@ -8,7 +8,21 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { styled } from '@mui/material/styles';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { withStyles } from '@mui/styles';
 import PaletteMetaForm from './PaletteMetaForm';
+
+const styles = {
+  root: { display: 'flex' },
+  navBtns: {
+    marginRight: '1rem',
+    '& a': {
+      textDecoration: 'none',
+    },
+  },
+  button: {
+    margin: '0 .5rem !important',
+  },
+};
 
 const drawerWidth = 400;
 
@@ -17,6 +31,7 @@ const AppBar = styled(MuiAppBar, {
 })(({ theme, open }) => ({
   flexDirection: 'row',
   justifyContent: 'space-between',
+  alignItems: 'center',
   height: '64px',
   transition: theme.transitions.create(['margin', 'width'], {
     easing: theme.transitions.easing.sharp,
@@ -32,16 +47,20 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-// const styles = {
-//   Root: {},
-//   navBtns: {},
-// };
+function PaletteFormNav({
+  open,
+  palettes,
+  classes,
+  handleSubmit,
+  handleDrawerOpen,
+}) {
+  const [formShowing, setFormShowing] = useState(false);
+  const showForm = () => {
+    setFormShowing(true);
+  };
 
-function PaletteFormNav({ open, palettes, handleSubmit, handleDrawerOpen }) {
   return (
-    <div
-    // className={classes.Root}
-    >
+    <div className={classes.root}>
       <CssBaseline />
       <AppBar position='fixed' open={open} color='default'>
         <Toolbar>
@@ -58,19 +77,30 @@ function PaletteFormNav({ open, palettes, handleSubmit, handleDrawerOpen }) {
             Persistent drawer
           </Typography>
         </Toolbar>
-        <div
-        // className={classes.navBtns}
-        >
-          <PaletteMetaForm palettes={palettes} handleSubmit={handleSubmit} />
+        <div className={classes.navBtns}>
           <Link to='/'>
-            <Button variant='contained' color='error'>
+            <Button
+              variant='contained'
+              color='error'
+              className={classes.button}
+            >
               Go Back
             </Button>
           </Link>
+          <Button
+            variant='contained'
+            className={classes.button}
+            onClick={() => showForm()}
+          >
+            Save Palette
+          </Button>
         </div>
       </AppBar>
+      {formShowing && (
+        <PaletteMetaForm palettes={palettes} handleSubmit={handleSubmit} />
+      )}
     </div>
   );
 }
 
-export default PaletteFormNav;
+export default withStyles(styles)(PaletteFormNav);
