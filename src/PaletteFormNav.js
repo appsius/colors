@@ -7,9 +7,8 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { styled } from '@mui/material/styles';
 import { Button } from '@mui/material';
-import { withStyles } from '@mui/styles';
-import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
 import { Link } from 'react-router-dom';
+import PaletteMetaForm from './PaletteMetaForm';
 
 const drawerWidth = 400;
 
@@ -33,36 +32,16 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-const styles = {
-  Root: {},
-  navBtns: {},
-};
+// const styles = {
+//   Root: {},
+//   navBtns: {},
+// };
 
-function PaletteFormNav({
-  open,
-  palettes,
-  classes,
-  handleSubmit,
-  handleDrawerOpen,
-}) {
-  const [newPaletteName, setNewPaletteName] = useState('');
-
-  ValidatorForm.addValidationRule('isPaletteNameUnique', (value) =>
-    palettes.every(
-      ({ paletteName }) =>
-        paletteName.toLocaleLowerCase() !== value.toLocaleLowerCase()
-    )
-  );
-
-  const handleChange = (evt) => {
-    const { name, value } = evt.target;
-    if (name === 'newPaletteName') {
-      setNewPaletteName(value);
-    }
-  };
-
+function PaletteFormNav({ open, palettes, handleSubmit, handleDrawerOpen }) {
   return (
-    <div className={classes.Root}>
+    <div
+    // className={classes.Root}
+    >
       <CssBaseline />
       <AppBar position='fixed' open={open} color='default'>
         <Toolbar>
@@ -79,23 +58,10 @@ function PaletteFormNav({
             Persistent drawer
           </Typography>
         </Toolbar>
-        <div className={classes.navBtns}>
-          <ValidatorForm onSubmit={() => handleSubmit(newPaletteName)}>
-            <TextValidator
-              label='Palette Name'
-              name='newPaletteName'
-              value={newPaletteName}
-              onChange={handleChange}
-              validators={['required', 'isPaletteNameUnique']}
-              errorMessages={[
-                'Palette name is required',
-                'Palette name must unique',
-              ]}
-            />
-            <Button variant='contained' color='primary' type='submit'>
-              Save Palette
-            </Button>
-          </ValidatorForm>
+        <div
+        // className={classes.navBtns}
+        >
+          <PaletteMetaForm palettes={palettes} handleSubmit={handleSubmit} />
           <Link to='/'>
             <Button variant='contained' color='error'>
               Go Back
@@ -107,4 +73,4 @@ function PaletteFormNav({
   );
 }
 
-export default withStyles(styles, { theme: true })(PaletteFormNav);
+export default PaletteFormNav;
