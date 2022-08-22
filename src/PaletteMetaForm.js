@@ -6,8 +6,10 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
+import data from '@emoji-mart/data';
+import Picker from '@emoji-mart/react';
 
-function PaletteMetaForm({ palettes, handleSubmit }) {
+function PaletteMetaForm({ palettes, handleSubmit, hideForm }) {
   const [newPaletteName, setNewPaletteName] = useState('');
   const [open, setOpen] = useState(true);
 
@@ -18,10 +20,6 @@ function PaletteMetaForm({ palettes, handleSubmit }) {
     )
   );
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   const handleChange = (evt) => {
     const { name, value } = evt.target;
     if (name === 'newPaletteName') {
@@ -30,7 +28,7 @@ function PaletteMetaForm({ palettes, handleSubmit }) {
   };
 
   return (
-    <Dialog open={open} onClose={handleClose}>
+    <Dialog open={open} onClose={hideForm}>
       <DialogTitle>Choose a Palette Name</DialogTitle>
       <ValidatorForm onSubmit={() => handleSubmit(newPaletteName)}>
         <DialogContent>
@@ -38,6 +36,18 @@ function PaletteMetaForm({ palettes, handleSubmit }) {
             Please enter a name for your new beautiful palette. Make sure it's
             unique!
           </DialogContentText>
+          <Picker
+            // data={data}
+            // onEmojiSelect={addEmoji}
+            // style={{
+            //   position: 'absolute',
+            //   marginTop: '465px',
+            //   marginLeft: -40,
+            //   maxWidth: '320px',
+            //   borderRadius: '20px',
+            // }}
+            theme='dark'
+          />
           <TextValidator
             label='Palette Name'
             name='newPaletteName'
@@ -54,7 +64,9 @@ function PaletteMetaForm({ palettes, handleSubmit }) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
+          <Button variant='outlined' onClick={hideForm} color='error'>
+            Cancel
+          </Button>
           <Button variant='contained' color='primary' type='submit'>
             Save Palette
           </Button>

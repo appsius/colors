@@ -55,8 +55,13 @@ function PaletteFormNav({
   handleDrawerOpen,
 }) {
   const [formShowing, setFormShowing] = useState(false);
+
   const showForm = () => {
     setFormShowing(true);
+  };
+
+  const hideForm = () => {
+    setFormShowing(false);
   };
 
   return (
@@ -97,7 +102,11 @@ function PaletteFormNav({
         </div>
       </AppBar>
       {formShowing && (
-        <PaletteMetaForm palettes={palettes} handleSubmit={handleSubmit} />
+        <PaletteMetaForm
+          palettes={palettes}
+          handleSubmit={handleSubmit}
+          hideForm={hideForm}
+        />
       )}
     </div>
   );
