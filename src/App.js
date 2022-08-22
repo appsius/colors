@@ -1,5 +1,5 @@
-import React, { Component, useState } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import Palette from './Palette';
 import PaletteList from './PaletteList';
 import SingleColorPalette from './SingleColorPalette';
@@ -9,10 +9,15 @@ import { seedColors } from './seedColors';
 import './App.css';
 
 export default function App() {
-  const [palettes, setPalettes] = useState(seedColors);
+  const savedPalettes = JSON.parse(window.localStorage.getItem('palettes'));
+  const [palettes, setPalettes] = useState(savedPalettes || seedColors);
   const savePalette = (newPalette) => {
     setPalettes([...palettes, newPalette]);
   };
+
+  useEffect(() => {
+    window.localStorage.setItem('palettes', JSON.stringify(palettes));
+  }, [palettes]);
 
   return (
     <Routes>
