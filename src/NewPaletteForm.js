@@ -77,11 +77,13 @@ function NewPaletteForm({ palettes, savePalette, classes }) {
     setColors([...colors, newColor]);
   };
 
-  const handleSubmit = (newPaletteName) => {
+  const handleSubmit = ({ paletteName, emoji }) => {
+    const id = paletteName.toLocaleLowerCase().replace(/ /g, '-');
     const newPalette = {
-      id: newPaletteName.toLocaleLowerCase().replace(/ /g, '-'),
-      paletteName: newPaletteName,
-      colors: colors,
+      id,
+      paletteName,
+      emoji,
+      colors,
     };
     savePalette(newPalette);
     navigate(`/`);
