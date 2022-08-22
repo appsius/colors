@@ -7,6 +7,9 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
   },
+  hide: {
+    display: 'none',
+  },
   buttons: {
     width: '75%',
   },
