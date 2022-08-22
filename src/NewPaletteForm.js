@@ -12,26 +12,10 @@ import DraggableColorList from './DraggableColorList';
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
 import { withStyles } from '@mui/styles';
+import styles from './styles/NewPaletteFormStyles';
+import { DRAWER_WIDTH } from './constants';
 
-const drawerWidth = 405;
-
-const styles = {
-  container: {
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  buttons: {
-    width: '75%',
-  },
-  button: {
-    width: '100%',
-    marginTop: '10px !important',
-  },
-};
+const drawerWidth = DRAWER_WIDTH;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({

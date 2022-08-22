@@ -10,21 +10,10 @@ import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@mui/styles';
 import PaletteMetaForm from './PaletteMetaForm';
+import styles from './styles/PaletteFormNavStyles';
+import { DRAWER_WIDTH } from './constants';
 
-const styles = {
-  root: { display: 'flex' },
-  navBtns: {
-    marginRight: '1rem',
-    '& a': {
-      textDecoration: 'none',
-    },
-  },
-  button: {
-    margin: '0 .5rem !important',
-  },
-};
-
-const drawerWidth = 400;
+const drawerWidth = DRAWER_WIDTH;
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',

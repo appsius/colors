@@ -3,22 +3,7 @@ import { ChromePicker } from 'react-color';
 import { Button } from '@mui/material';
 import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
 import { withStyles } from '@mui/styles';
-
-const styles = {
-  picker: {
-    width: '100% !important',
-    marginTop: '2rem !important',
-  },
-  addColor: {
-    width: '100% !important',
-    padding: '1rem !important',
-    marginTop: '1rem !important',
-    fontSize: '2rem !important',
-  },
-  colorNameInput: {
-    width: '100%',
-  },
-};
+import styles from './styles/ColorPickerFormStyles';
 
 function ColorPickerForm({ colors, paletteIsFull, addNewColor, classes }) {
   const [currentColor, setCurrentColor] = useState('teal');
