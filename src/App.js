@@ -11,12 +11,22 @@ import './App.css';
 export default function App() {
   const savedPalettes = JSON.parse(window.localStorage.getItem('palettes'));
   const [palettes, setPalettes] = useState(savedPalettes || seedColors);
+
   const savePalette = (newPalette) => {
     setPalettes([...palettes, newPalette]);
   };
 
+  const deletePalette = (id) => {
+    const filteredPalettes = palettes.filter((p) => p.id !== id);
+    setPalettes(filteredPalettes);
+  };
+
   useEffect(() => {
-    window.localStorage.setItem('palettes', JSON.stringify(palettes));
+    if (palettes.length === 0) {
+      window.localStorage.setItem('palettes', JSON.stringify(seedColors));
+    } else {
+      window.localStorage.setItem('palettes', JSON.stringify(palettes));
+    }
   }, [palettes]);
 
   return (
@@ -28,7 +38,13 @@ export default function App() {
           <NewPaletteForm palettes={palettes} savePalette={savePalette} />
         }
       />
-      <Route exact path='/' element={<PaletteList palettes={palettes} />} />
+      <Route
+        exact
+        path='/'
+        element={
+          <PaletteList palettes={palettes} deletePalette={deletePalette} />
+        }
+      />
       <Route
         exact
         path='/palette/:paletteId'
