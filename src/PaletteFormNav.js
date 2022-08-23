@@ -86,7 +86,7 @@ function PaletteFormNav({
             className={classes.button}
             onClick={() => showForm()}
           >
-            Save Palette
+            Save
           </Button>
         </div>
       </AppBar>
