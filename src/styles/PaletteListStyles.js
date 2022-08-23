@@ -1,4 +1,5 @@
 import sizes from './sizes';
+import sunTornado from './sun-tornado.svg';
 
 const styles = {
   root: {
@@ -7,6 +8,14 @@ const styles = {
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'center',
+    overflow: 'scroll',
+    backgroundColor: '#ee5522',
+    backgroundImage: `url(${sunTornado})`,
+    backgroundAttachment: 'fixed',
+    backgroundSize: 'cover',
+  },
+  header: {
+    fontSize: '2rem',
   },
   container: {
     width: '50%',
@@ -42,7 +51,7 @@ const styles = {
     },
     [sizes.down('xs')]: {
       gridTemplateColumns: 'repeat(1,100%)',
-      gridGap: '1rem',
+      gridGap: '1.4rem',
     },
   },
 };
