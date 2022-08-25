@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 function MiniPalette(props) {
-  const { id, paletteName, emoji, colors, classes, handleClick, handleDelete } =
+  const { id, paletteName, emoji, colors, classes, handleClick, openDialog } =
     props;
   const navigate = useNavigate();
   const miniBoxes = colors.map((color) => (
@@ -18,7 +18,7 @@ function MiniPalette(props) {
 
   const deletePalette = (e) => {
     e.stopPropagation();
-    handleDelete(id);
+    openDialog(id);
     navigate('/');
   };
 

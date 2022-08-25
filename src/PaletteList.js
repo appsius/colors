@@ -1,17 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { withStyles } from '@mui/styles';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Avatar from '@mui/material/Avatar';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemText from '@mui/material/ListItemText';
+import CheckIcon from '@mui/icons-material/Check';
+import CloseIcon from '@mui/icons-material/Close';
+import blue from '@mui/material/colors/blue';
+import red from '@mui/material/colors/red';
 import { styles } from './styles/PaletteListStyles';
 import MiniPalette from './MiniPalette';
 
 function PaletteList(props) {
-  const { palettes, classes, deletePalette } = props;
   const navigate = useNavigate();
+  const { palettes, classes, deletePalette } = props;
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+  const [deletingId, setDeletingId] = useState('');
 
   const goToPalette = (id) => {
     navigate(`/palette/${id}`);
+  };
+
+  const openDialog = (id) => {
+    setOpenDeleteDialog(true);
+    setDeletingId(id);
+  };
+
+  const closeDialog = () => {
+    setOpenDeleteDialog(false);
+    setDeletingId('');
+  };
+
+  const handleDelete = () => {
+    deletePalette(deletingId);
+    closeDialog();
   };
 
   return (
@@ -29,12 +60,38 @@ function PaletteList(props) {
                 id={palette.id}
                 key={palette.id}
                 handleClick={() => goToPalette(palette.id)}
-                handleDelete={deletePalette}
+                // handleDelete={deletePalette}
+                openDialog={openDialog}
               />
             </CSSTransition>
           ))}
         </TransitionGroup>
       </div>
+      <Dialog
+        open={openDeleteDialog}
+        aria-labelledby='delete-dialog-title'
+        onClose={closeDialog}
+      >
+        <DialogTitle id='delete-dialog-title'>Delete the palette?</DialogTitle>
+        <List>
+          <ListItem button onClick={handleDelete}>
+            <ListItemAvatar>
+              <Avatar style={{ backgroundColor: blue[100], color: blue[600] }}>
+                <CheckIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText>Delete</ListItemText>
+          </ListItem>
+          <ListItem button onClick={closeDialog}>
+            <ListItemAvatar>
+              <Avatar style={{ backgroundColor: red[100], color: red[600] }}>
+                <CloseIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText>Cancel</ListItemText>
+          </ListItem>
+        </List>
+      </Dialog>
     </div>
   );
 }
