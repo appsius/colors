@@ -175,6 +175,7 @@ function NewPaletteForm({ palettes, savePalette, classes }) {
           removeColor={removeColor}
           axis='xy'
           onSortEnd={onSortEnd}
+          distance={20}
         />
       </Main>
     </Box>
