@@ -37,6 +37,7 @@ function PaletteMetaForm({ palettes, hideForm, handleSubmit }) {
       paletteName: newPaletteName,
       emoji: native,
     };
+    setStage('');
     handleSubmit(newPalette);
   };
 

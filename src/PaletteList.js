@@ -4,9 +4,6 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Avatar from '@mui/material/Avatar';
 import List from '@mui/material/List';
@@ -26,9 +23,7 @@ function PaletteList(props) {
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [deletingId, setDeletingId] = useState('');
 
-  const goToPalette = (id) => {
-    navigate(`/palette/${id}`);
-  };
+  console.log(openDeleteDialog);
 
   const openDialog = (id) => {
     setOpenDeleteDialog(true);
@@ -45,6 +40,10 @@ function PaletteList(props) {
     closeDialog();
   };
 
+  const goToPalette = (id) => {
+    navigate(`/palette/${id}`);
+  };
+
   return (
     <div className={classes.root}>
       <div className={classes.container}>
@@ -59,8 +58,8 @@ function PaletteList(props) {
                 {...palette}
                 id={palette.id}
                 key={palette.id}
-                handleClick={() => goToPalette(palette.id)}
-                // handleDelete={deletePalette}
+                openDeleteDialog={openDeleteDialog}
+                goToPalette={goToPalette}
                 openDialog={openDialog}
               />
             </CSSTransition>
