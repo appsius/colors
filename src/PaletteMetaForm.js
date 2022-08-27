@@ -89,4 +89,3 @@ function PaletteMetaForm({ palettes, hideForm, handleSubmit }) {
 }
 
 export default PaletteMetaForm;
-// export default withStyles(styles)(PaletteMetaForm);

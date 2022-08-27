@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router';
 import DraggableColorList from './DraggableColorList';
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
-import { withStyles } from '@mui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import styles from './styles/NewPaletteFormStyles';
 import { DRAWER_WIDTH } from './constants';
 import { seedColors } from './seedColors';

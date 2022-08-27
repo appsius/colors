@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-import { withStyles } from '@mui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import { generatePalette } from './ColorHelpers';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from '@mui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import { SortableElement } from 'react-sortable-hoc';
 import DeleteIcon from '@mui/icons-material/Delete';
 import styles from './styles/DraggableColorBoxStyles';

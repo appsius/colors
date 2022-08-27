@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { withStyles } from '@mui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';

@@ -8,7 +8,7 @@ import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 import { styled } from '@mui/material/styles';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { withStyles } from '@mui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import PaletteMetaForm from './PaletteMetaForm';
 import styles from './styles/PaletteFormNavStyles';
 import { DRAWER_WIDTH } from './constants';

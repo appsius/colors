@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Slider from 'rc-slider';
 import { Link } from 'react-router-dom';
-import withStyles from '@mui/styles/withStyles';
+import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Snackbar from '@mui/material/Snackbar';

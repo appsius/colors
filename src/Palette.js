@@ -4,7 +4,7 @@ import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 import { generatePalette } from './ColorHelpers';
 import PaletteFooter from './PaletteFooter';
-import { withStyles } from '@mui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import { styles } from './styles/PaletteStyles';
 
 function Palette(props) {
