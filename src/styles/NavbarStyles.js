@@ -42,7 +42,6 @@ const styles = {
         boxShadow: 'none',
         width: '13px',
         height: '13px',
-        outline: 'none',
         marginTop: '-2.5px',
         marginLeft: '-7px',
       },

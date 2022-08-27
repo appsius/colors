@@ -2,11 +2,11 @@ import React, { useEffect, useState, Fragment } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { seedColors } from './seedColors';
 import Palette from './Palette';
 import PaletteList from './PaletteList';
 import SingleColorPalette from './SingleColorPalette';
 import NewPaletteForm from './NewPaletteForm';
-import { seedColors } from './seedColors';
 import Page from './Page';
 
 export default function App() {

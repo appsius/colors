@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
+import { withStyles } from '@mui/styles';
 import { generatePalette } from './ColorHelpers';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 import PaletteFooter from './PaletteFooter';
-import { withStyles } from '@mui/styles';
 import { styles } from './styles/PaletteStyles';
 
 function SingleColorPalette(props) {

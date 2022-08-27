@@ -24,8 +24,6 @@ const MiniPalette = React.memo(
       goToPalette(id);
     };
 
-    console.log('Mini palette', paletteName);
-
     return (
       <div className={classes.root} onClick={handleClick}>
         <DeleteIcon

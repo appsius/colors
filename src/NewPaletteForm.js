@@ -14,13 +14,13 @@ import ColorPickerForm from './ColorPickerForm';
 import { withStyles } from '@mui/styles';
 import styles from './styles/NewPaletteFormStyles';
 import { DRAWER_WIDTH } from './constants';
+import { seedColors } from './seedColors';
 
 const drawerWidth = DRAWER_WIDTH;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     flexGrow: 1,
-    // padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -46,7 +46,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 function NewPaletteForm({ palettes, savePalette, classes }) {
   const [open, setOpen] = useState(true);
-  const [colors, setColors] = useState(palettes[0].colors);
+  const [colors, setColors] = useState(seedColors[0].colors);
   const maxColors = 20;
   const paletteIsFull = colors.length >= maxColors;
   const navigate = useNavigate();

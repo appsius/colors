@@ -32,7 +32,6 @@ function PaletteMetaForm({ palettes, hideForm, handleSubmit }) {
   };
 
   const savePalette = ({ native }) => {
-    console.log(native);
     const newPalette = {
       paletteName: newPaletteName,
       emoji: native,

@@ -23,8 +23,6 @@ function PaletteList(props) {
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [deletingId, setDeletingId] = useState('');
 
-  console.log(openDeleteDialog);
-
   const openDialog = (id) => {
     setOpenDeleteDialog(true);
     setDeletingId(id);
