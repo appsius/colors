@@ -83,18 +83,16 @@ function NewPaletteForm({ palettes, savePalette, classes }) {
 
   const addRandomColor = () => {
     const allColors = palettes.map((p) => p.colors).flat();
-    let rand;
-    let randomColor;
     let isDuplicateColor = true;
     while (isDuplicateColor) {
-      rand = Math.floor(Math.random() * allColors.length);
-      randomColor = allColors[rand];
+      let rand = Math.floor(Math.random() * allColors.length);
+      let randomColor = allColors[rand];
       isDuplicateColor = colors.some(
         (color) => color.name === randomColor.name
       );
+      let newColors = [...colors, randomColor];
+      setColors(newColors);
     }
-    let newColors = [...colors, randomColor];
-    setColors(newColors);
   };
 
   const onSortEnd = ({ oldIndex: oldI, newIndex: newI }) => {
